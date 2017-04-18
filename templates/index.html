@@ -1,0 +1,22 @@
+{% extends 'base.html' %} 
+<html>
+		{% block content %}
+		<head>
+				<h1>Hello {{ name|default('World') }}</h1>
+		</head>
+		<body>
+				{% with messages = get_flashed_messages() %}
+				{% if messages %}
+				{% for message in messages %}
+				<l1>{{ message }}</l1>
+				{% endfor %}
+				{% endif %}
+				{% endwith %}
+				{{ wtf.quick_form(form) }}
+				{% if name %}
+				{{ url_for(user) }}
+				{% endif %}
+				<p>You have visited this page at {{ date }}</p>
+		</body>
+		{% endblock %}
+</html>

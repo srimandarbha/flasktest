@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+<html>
+		{% block title %}
+		Hello {{ user }}
+		{% endblock %}
+		{% block content %}
+		<head>
+				<h1>Hello {{ user }}</h1>
+				<a href="{{ url_for('logout') }}">Logout</a>
+		</head>
+		<body>
+				{% with messages = get_flashed_messages() %}
+				{% if messages %}
+				{% for message in messages %}
+				<l1>{{ message }}</l1>
+				{% endfor %}
+				{%  endif %}
+				{% endwith %}
+				<h1>How are you {{ user }}!</h1>
+				<p>You have visited this page at {{ date }}</p>
+		</body>
+		{% endblock %}
+</html>
