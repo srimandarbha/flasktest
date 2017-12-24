@@ -5,8 +5,24 @@
 		{% endblock %}
 		{% block content %}
 		<head>
+                                <style>
+                                table, th, td {
+ 				  border: 1px solid black;
+ 				  border-collapse: collapse;
+ 				}
+				th, td {
+				  padding: 5px;
+				  text-align: lext;
+				}
+                                table#t01 {
+                                  width: 100%;
+                                  background-color: #f1f1c1;
+                                }
+ 				</style>
 				<h1>Hello {{ user }}</h1>
-				<a href="{{ url_for('logout') }}">Logout</a>
+                                <div class='right'>
+				  <a href="{{ url_for('logout') }}">Logout</a>
+                                </div>
 		</head>
 		<body>
 				{% with messages = get_flashed_messages() %}
@@ -16,7 +32,24 @@
 				{% endfor %}
 				{%  endif %}
 				{% endwith %}
-				<h1>How are you {{ user }}!</h1>
+                                <center><h3>Inventory List</h3>
+                                <table style="width:100%" id="t01">
+				 <tr>
+                                    <th>group</th>
+                                    <th>hostname</th>
+                                    <th>fqdn</th>
+                                    <th>variables</th>
+                                 </tr>
+                                {% for item in cur %}
+				 <tr>
+                                    <th>{{ item[0] }}</th>
+                                    <th>{{ item[1] }}</th>
+                                    <th>{{ item[2] }}</th>
+                                    <th>{{ item[3] }}</th>
+                                 </tr>
+ 				{% endfor %}
+                                </table>
+                                </center>
 				<p>You have visited this page at {{ date }}</p>
 		</body>
 		{% endblock %}

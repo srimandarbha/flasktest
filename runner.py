@@ -7,12 +7,13 @@ from wtforms import StringField, SubmitField, PasswordField
 from wtforms.validators import Length, Required
 from flask.ext.wtf import Form
 import datetime
+import pymysql
 
 app=Flask(__name__)
+Bootstrap(app)
 app.config['SQLALCHEMY_DATABASE_URI']='sqlite:///db-test.sqlite'
 app.config['SECRET_KEY']='very top secret'
 db=SQLAlchemy(app)
-bootstrap=Bootstrap(app)
 db.create_all()
 date=datetime.datetime.now()
 login_manager  =  LoginManager(app)
@@ -73,7 +74,12 @@ def index():
 @login_required
 def user(user):
     date=datetime.datetime.now()
-    return render_template('user.html', user=user, date=date)
+    conn = pymysql.connect(host='localhost', port=3306, user='root', passwd='root123', db='inventory')
+    cur = conn.cursor()
+    cur.execute("SELECT * from inventory")
+    cur.close()
+    conn.close()
+    return render_template('user.html', user=user, date=date, cur=cur)
 
 @app.route('/logout')
 @login_required
@@ -83,4 +89,4 @@ def logout():
     return redirect(url_for('index'))
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True,port=8000)
