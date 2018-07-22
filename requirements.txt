@@ -15,7 +15,7 @@ Flask-MySQL==1.4.0
 Flask-Script==2.0.5
 Flask-SQLAlchemy==1.0
 Flask-WTF==0.10.0
-gunicorn==19.0.0
+gunicorn==19.5.0
 idna==2.2
 ipaddress==1.0.18
 ipython==5.2.2
@@ -24,7 +24,7 @@ itsdangerous==0.24
 Jinja2==2.7.3
 MarkupSafe==0.23
 packaging==16.8
-paramiko==2.1.1
+paramiko==2.1.5
 pathlib2==2.2.1
 pbr==1.10.0
 pexpect==4.2.1
